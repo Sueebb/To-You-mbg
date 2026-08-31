@@ -1,0 +1,86 @@
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lock Screen</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main>
+
+        <!-- HALAMAN PERTAMA -->
+        <section class="lockscreen">
+
+            <img src="wallpaper.jpeg" class="foto-atas">
+
+            <div class="jam">
+                <div class="waktu" id="waktu">00:00</div>
+                <div class="tanggal" id="tanggal">Sen &nbsp; 31 Agu</div>
+            </div>
+
+            <div class="geser">
+                <div class="panah">⌃</div>
+                <p>Geser ke atas</p>
+            </div>
+
+        </section>
+
+
+        <!-- HALAMAN PASSWORD -->
+        <section class="password-screen">
+
+            <div class="background-blur"></div>
+
+            <div class="password-content">
+
+                <h1>Masukkan Sandi</h1>
+
+                <!-- TITIK PASSWORD -->
+                <div class="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+
+                <!-- KEYPAD -->
+                <div class="keypad">
+
+                    <button onclick="masukkanAngka('1')">1</button>
+                    <button onclick="masukkanAngka('2')">2</button>
+                    <button onclick="masukkanAngka('3')">3</button>
+
+                    <button onclick="masukkanAngka('4')">4</button>
+                    <button onclick="masukkanAngka('5')">5</button>
+                    <button onclick="masukkanAngka('6')">6</button>
+
+                    <button onclick="masukkanAngka('7')">7</button>
+                    <button onclick="masukkanAngka('8')">8</button>
+                    <button onclick="masukkanAngka('9')">9</button>
+
+                    <div></div>
+                    <button onclick="masukkanAngka('0')">0</button>
+                    <div></div>
+
+                </div>
+
+                <div class="bottom-button">
+                    <button>Darurat</button>
+                    <button onclick="hapus()">Batal</button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
