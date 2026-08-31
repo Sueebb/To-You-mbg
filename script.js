@@ -26,11 +26,18 @@ function updateDots() {
     const dots = document.querySelectorAll(".dots span");
     dots.forEach((dot, index) => {
         if (index < password.length) {
-            dot.style.background = "white";
+            dot.classList.add("terisi");
         } else {
-            dot.style.background = "#777";
+            dot.classList.remove("terisi");
+            dot.classList.remove("pop");
         }
     });
+    if (password.length > 0) {
+        const dotBaru = dots[password.length - 1];
+        dotBaru.classList.remove("pop");
+        void dotBaru.offsetWidth;
+        dotBaru.classList.add("pop");
+    }
 }
 
 function hapus() {
@@ -44,6 +51,7 @@ SWIPE LOCK SCREEN
 const main = document.querySelector("main");
 let posisiAwal = 0;
 let posisiAkhir = 0;
+let sedangGeser = false;
 
 /* SAAT JARI MULAI MENYENTUH */
 main.addEventListener("touchstart", function(event) {
@@ -67,6 +75,39 @@ main.addEventListener("touchend", function(event) {
         }
     }
 );
+
+/* =========================
+   MOUSE / LAPTOP
+========================= */
+main.addEventListener("mousedown", function(event) {
+    sedangGeser = true;
+    posisiAwal = event.clientY;
+});
+
+main.addEventListener("mouseup", function(event) {
+    if (!sedangGeser) {
+        return;
+    }
+    posisiAkhir = event.clientY;
+    const jarak = posisiAwal - posisiAkhir;
+
+    // GESER KE ATAS
+    if (jarak > 80) {
+        main.classList.add("unlock");
+    }
+
+    // GESER KE BAWAH
+    if (jarak < -80) {
+        main.classList.remove("unlock");
+    }
+    sedangGeser = false;
+});
+
+/* Jika mouse keluar dari area */
+main.addEventListener("mouseleave", function() {
+        sedangGeser = false;
+
+});
 
 /* =========================
    JAM DAN TANGGAL OTOMATIS
@@ -117,3 +158,9 @@ updateWaktu();
 
 // Update setiap 1 detik
 setInterval(updateWaktu, 1000);
+
+function kembali() {
+    main.classList.remove("unlock");
+    password = "";
+    updateDots();
+}
